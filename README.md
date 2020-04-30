@@ -4,4 +4,4 @@
 ![npm-publish](https://github.com/tsdotnet/lazy/workflows/npm-publish/badge.svg)
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/lazy.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/lazy)
 
-Lazy<T> and ResettableLazy<T> class for simplifying lazy initialization.
+Lazy&lt;T&gt; and ResettableLazy&lt;T&gt; class for simplifying lazy initialization.
