@@ -1,6 +1,6 @@
 {
   "name": "@tsdotnet/lazy",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "description": "Lazy<T> and ResettableLazy<T> class for simplifying lazy initialization.",
   "author": "electricessence",
   "license": "MIT",
@@ -13,7 +13,9 @@
     "intializer",
     "lazy init",
     "lazy intialize",
-    "lazy intializer"
+    "lazy intializer",
+    "value resolver",
+    "value resolution"
   ],
   "scripts": {
     "clean": "rimraf dist/*",
@@ -44,5 +46,8 @@
     "rimraf": "^3.0.2",
     "ts-node": "^8.9.0",
     "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@tsdotnet/disposable": "^1.1.0"
   }
 }
