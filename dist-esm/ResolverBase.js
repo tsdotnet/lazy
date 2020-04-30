@@ -1,11 +1,8 @@
-"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * Licensing: MIT
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const disposable_1 = tslib_1.__importDefault(require("@tsdotnet/disposable"));
+import DisposableBase from "@tsdotnet/disposable";
 const NAME = 'ResolverBase';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**
@@ -14,7 +11,7 @@ const NAME = 'ResolverBase';
  * we have to prevent getValue from double triggering the value factory (optimistic concurrency)
  * or returning return a value that is intermediate between resolving and resolved.
  */
-class ResolverBase extends disposable_1.default {
+export default class ResolverBase extends DisposableBase {
     constructor(_valueFactory, _allowReset = false) {
         super(NAME);
         this._valueFactory = _valueFactory;
@@ -99,5 +96,4 @@ class ResolverBase extends disposable_1.default {
         }
     }
 }
-exports.default = ResolverBase;
 //# sourceMappingURL=ResolverBase.js.map

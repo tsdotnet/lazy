@@ -1,12 +1,9 @@
-"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * Licensing: MIT
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const Lazy_1 = tslib_1.__importDefault(require("./Lazy"));
-class ResettableLazy extends Lazy_1.default {
+import Lazy from './Lazy';
+export default class ResettableLazy extends Lazy {
     constructor(valueFactory) {
         super(valueFactory, true);
         this._disposableObjectName = 'ResettableLazy';
@@ -15,5 +12,4 @@ class ResettableLazy extends Lazy_1.default {
         return new ResettableLazy(valueFactory);
     }
 }
-exports.default = ResettableLazy;
 //# sourceMappingURL=ResettableLazy.js.map

@@ -1,13 +1,10 @@
-"use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
  * Licensing: MIT
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = require("tslib");
-const ResolverBase_1 = tslib_1.__importDefault(require("./ResolverBase"));
+import ResolverBase from './ResolverBase';
 // We need a non-resettable lazy to ensure it can be passed safely around.
-class Lazy extends ResolverBase_1.default {
+export default class Lazy extends ResolverBase {
     constructor(valueFactory, allowReset = false) {
         super(valueFactory, allowReset);
         this._disposableObjectName = 'Lazy';
@@ -47,5 +44,4 @@ class Lazy extends ResolverBase_1.default {
         return new Lazy(valueFactory, allowReset);
     }
 }
-exports.default = Lazy;
 //# sourceMappingURL=Lazy.js.map
