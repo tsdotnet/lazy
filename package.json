@@ -1,6 +1,6 @@
 {
   "name": "@tsdotnet/lazy",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Lazy<T> and ResettableLazy<T> class for simplifying lazy initialization.",
   "author": "electricessence",
   "license": "MIT",
