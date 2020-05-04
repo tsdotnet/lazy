@@ -7,4 +7,5 @@
 `Lazy<T>` and `ResettableLazy<T>` classes for simplifying lazy initialization.
 
 ## Docs
+
 [tsdotnet.github.io/lazy](https://tsdotnet.github.io/lazy/)
