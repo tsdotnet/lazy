@@ -5,3 +5,6 @@
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/lazy.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/lazy)
 
 `Lazy<T>` and `ResettableLazy<T>` classes for simplifying lazy initialization.
+
+## Docs
+[tsdotnet.github.io/lazy](https://tsdotnet.github.io/lazy/)
