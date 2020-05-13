@@ -4,6 +4,7 @@
  * Licensing: MIT
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Lazy = exports.ResettableLazy = exports.ResolverBase = void 0;
 const tslib_1 = require("tslib");
 const ResolverBase_1 = tslib_1.__importDefault(require("./ResolverBase"));
 exports.ResolverBase = ResolverBase_1.default;
