@@ -1,5 +1,5 @@
 describe('placeholder', () => {
 	it('does nothing', () => {
-		expect(true).toBeTrue();
+		expect(true).to.be.true;
 	});
 });
