@@ -1,6 +1,6 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 import Lazy from './Lazy';
 export default class ResettableLazy<T> extends Lazy<T> {

@@ -1,6 +1,6 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 import ResolverBase from './ResolverBase';
 // We need a non-resettable lazy to ensure it can be passed safely around.
@@ -8,12 +8,6 @@ export default class Lazy extends ResolverBase {
     constructor(valueFactory, allowReset = false) {
         super(valueFactory, allowReset);
         this._disposableObjectName = 'Lazy';
-    }
-    /**
-     * Returns true if the value has been created.
-     */
-    get isValueCreated() {
-        return !!this._isValueCreated;
     }
     /**
      * Returns the resolved value.

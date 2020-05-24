@@ -1,6 +1,6 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 import ResolverBase from "./ResolverBase";
 import Lazy from "./Lazy";

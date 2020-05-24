@@ -1,8 +1,8 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
-import DisposableBase from "@tsdotnet/disposable";
+import DisposableBase from '@tsdotnet/disposable';
 declare type Func<T> = () => T;
 /**
  * The ResolverBase class handles resolving a factory method and detects recursion.
@@ -11,13 +11,15 @@ declare type Func<T> = () => T;
  * or returning return a value that is intermediate between resolving and resolved.
  */
 export default abstract class ResolverBase<T> extends DisposableBase {
-    protected _valueFactory: Func<T>;
     private readonly _allowReset;
-    protected _isValueCreated: boolean | null;
-    protected _value: T | undefined;
-    protected constructor(_valueFactory: Func<T>, _allowReset?: boolean);
-    protected _error: any;
-    protected getError(): any;
+    protected readonly _resolveState: {
+        created: null | boolean;
+        value?: T;
+        factory?: Func<T>;
+        error?: unknown;
+    };
+    protected constructor(valueFactory: Func<T>, _allowReset?: boolean);
+    protected getError(): unknown;
     /**
      * The error value if previous faulted.
      */
@@ -27,6 +29,10 @@ export default abstract class ResolverBase<T> extends DisposableBase {
      * @returns {boolean}
      */
     get isFaulted(): boolean;
+    /**
+     * Returns true if the value has been created.
+     */
+    get isValueCreated(): boolean;
     /**
      * Uses the provided factory to generate the value and returns that value for subsequent requests.
      */

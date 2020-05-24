@@ -1,6 +1,6 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 
 import ResolverBase from './ResolverBase';
@@ -15,14 +15,6 @@ export default class Lazy<T>
 	{
 		super(valueFactory, allowReset);
 		this._disposableObjectName = 'Lazy';
-	}
-
-	/**
-	 * Returns true if the value has been created.
-	 */
-	get isValueCreated (): boolean
-	{
-		return !!this._isValueCreated;
 	}
 
 	/**

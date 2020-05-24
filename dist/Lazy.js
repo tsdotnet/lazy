@@ -1,7 +1,7 @@
 "use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
@@ -11,12 +11,6 @@ class Lazy extends ResolverBase_1.default {
     constructor(valueFactory, allowReset = false) {
         super(valueFactory, allowReset);
         this._disposableObjectName = 'Lazy';
-    }
-    /**
-     * Returns true if the value has been created.
-     */
-    get isValueCreated() {
-        return !!this._isValueCreated;
     }
     /**
      * Returns the resolved value.

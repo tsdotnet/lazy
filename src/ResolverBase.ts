@@ -1,10 +1,11 @@
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 
 
-import DisposableBase from "@tsdotnet/disposable";
+import DisposableBase from '@tsdotnet/disposable';
+
 type Func<T> = () => T;
 
 const NAME: string = 'ResolverBase';
@@ -20,25 +21,33 @@ const NAME: string = 'ResolverBase';
 export default abstract class ResolverBase<T>
 	extends DisposableBase
 {
-	protected _isValueCreated: boolean | null; // null = 'creating'
-	protected _value: T | undefined;
+	protected readonly _resolveState: {
+		created: null | boolean; // null = 'creating'
+		value?: T,
+		factory?: Func<T>,
+		error?: unknown
+	};
 
 	protected constructor (
-		protected _valueFactory: Func<T>,
-		private readonly _allowReset: boolean = false,
+		valueFactory: Func<T>,
+		private readonly _allowReset: boolean = false
 	)
 	{
 		super(NAME);
-		if(!_valueFactory) throw new Error('\'valueFactory\' cannot be null or undefined.');
-		this._isValueCreated = false;
+		if(!valueFactory) throw new Error('\'valueFactory\' cannot be null or undefined.');
+		this._resolveState = {
+			created: false,
+			factory: valueFactory
+		};
 	}
 
-	protected _error: any;
-
-	// Allows for overriding this behavior.
-	protected getError (): any
+	/**
+	 * True if the resolution faulted.
+	 * @returns {boolean}
+	 */
+	get isFaulted (): boolean
 	{
-		return this._error;
+		return !!this._resolveState.error;
 	}
 
 	/**
@@ -50,12 +59,20 @@ export default abstract class ResolverBase<T>
 	}
 
 	/**
-	 * True if the resolution faulted.
+	 * Returns true if the value has been created.
+	 */
+	get isValueCreated (): boolean
+	{
+		return !!this._resolveState.created;
+	}
+
+	/**
+	 * Will return true if allowReset is true and a value factory still exists.
 	 * @returns {boolean}
 	 */
-	get isFaulted (): boolean
+	get canReset (): boolean
 	{
-		return !!this._error;
+		return this._allowReset && !!this._resolveState.factory;
 	}
 
 	/**
@@ -65,47 +82,33 @@ export default abstract class ResolverBase<T>
 	{
 
 		this.throwIfDisposed();
+		const state = this._resolveState;
 		// Do not continue if already faulted.
-		if(this._error) throw this._error;
-		if(this._isValueCreated===null) throw new Error('Recursion detected.');
+		if(state.error) throw state.error;
+		if(state.created===null) throw new Error('Recursion detected.');
 		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-		else if(this._isValueCreated) return this._value!;
+		else if(state.created) return state.value!;
 
-		const c = this._valueFactory;
-		if(!c) throw new Error("Unexpected resolution state.");
+		const c = state.factory;
+		if(!c) throw new Error('Unexpected resolution state.');
 
-		this._isValueCreated = null; // Mark this as 'resolving'.
+		state.created = null; // Mark this as 'resolving'.
 		try
 		{
-			if(!this._allowReset) this._valueFactory = undefined as any;
+			if(!this._allowReset) state.factory = undefined;
 			const v = c();
-			this._value = v;
-			this._error = void 0;
-			this._isValueCreated = true;
+			state.value = v;
+			state.created = true;
+			state.error = undefined;
 			return v;
 		}
 		catch(ex)
 		{
-			this._isValueCreated = false;
-			this._error = ex;
+			state.value = undefined;
+			state.created = false;
+			state.error = ex;
 			throw ex;
 		}
-	}
-
-	/**
-	 * Will return true if allowReset is true and a value factory still exists.
-	 * @returns {boolean}
-	 */
-	get canReset (): boolean
-	{
-		return this._allowReset && !!this._valueFactory;
-	}
-
-	protected _onDispose (): void
-	{
-		this._valueFactory = undefined as any;
-		this._value = undefined;
-		this._isValueCreated = null;
 	}
 
 	/**
@@ -114,13 +117,30 @@ export default abstract class ResolverBase<T>
 	 */
 	tryReset (): boolean
 	{
-		if(!this._valueFactory) return false;
+		if(!this._allowReset) return false;
+		const state = this._resolveState;
+		if(!state.factory) return false;
 		else
 		{
-			this._isValueCreated = false;
-			this._value = undefined;
-			this._error = undefined;
+			state.created = false;
+			state.value = undefined;
+			state.error = undefined;
 			return true;
 		}
+	}
+
+	// Allows for overriding this behavior.
+	protected getError (): unknown
+	{
+		return this._resolveState.error;
+	}
+
+	protected _onDispose (): void
+	{
+		const state = this._resolveState;
+		state.factory = undefined;
+		state.value = undefined;
+		state.created = null;
+		Object.freeze(state);
 	}
 }

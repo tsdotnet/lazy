@@ -1,7 +1,7 @@
 "use strict";
 /*!
  * @author electricessence / https://github.com/electricessence/
- * Licensing: MIT
+ * @license MIT
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
@@ -15,17 +15,19 @@ const NAME = 'ResolverBase';
  * or returning return a value that is intermediate between resolving and resolved.
  */
 class ResolverBase extends disposable_1.default {
-    constructor(_valueFactory, _allowReset = false) {
+    constructor(valueFactory, _allowReset = false) {
         super(NAME);
-        this._valueFactory = _valueFactory;
         this._allowReset = _allowReset;
-        if (!_valueFactory)
+        if (!valueFactory)
             throw new Error('\'valueFactory\' cannot be null or undefined.');
-        this._isValueCreated = false;
+        this._resolveState = {
+            created: false,
+            factory: valueFactory
+        };
     }
     // Allows for overriding this behavior.
     getError() {
-        return this._error;
+        return this._resolveState.error;
     }
     /**
      * The error value if previous faulted.
@@ -38,37 +40,45 @@ class ResolverBase extends disposable_1.default {
      * @returns {boolean}
      */
     get isFaulted() {
-        return !!this._error;
+        return !!this._resolveState.error;
+    }
+    /**
+     * Returns true if the value has been created.
+     */
+    get isValueCreated() {
+        return !!this._resolveState.created;
     }
     /**
      * Uses the provided factory to generate the value and returns that value for subsequent requests.
      */
     getValue() {
         this.throwIfDisposed();
+        const state = this._resolveState;
         // Do not continue if already faulted.
-        if (this._error)
-            throw this._error;
-        if (this._isValueCreated === null)
+        if (state.error)
+            throw state.error;
+        if (state.created === null)
             throw new Error('Recursion detected.');
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        else if (this._isValueCreated)
-            return this._value;
-        const c = this._valueFactory;
+        else if (state.created)
+            return state.value;
+        const c = state.factory;
         if (!c)
-            throw new Error("Unexpected resolution state.");
-        this._isValueCreated = null; // Mark this as 'resolving'.
+            throw new Error('Unexpected resolution state.');
+        state.created = null; // Mark this as 'resolving'.
         try {
             if (!this._allowReset)
-                this._valueFactory = undefined;
+                state.factory = undefined;
             const v = c();
-            this._value = v;
-            this._error = void 0;
-            this._isValueCreated = true;
+            state.value = v;
+            state.created = true;
+            state.error = undefined;
             return v;
         }
         catch (ex) {
-            this._isValueCreated = false;
-            this._error = ex;
+            state.value = undefined;
+            state.created = false;
+            state.error = ex;
             throw ex;
         }
     }
@@ -77,24 +87,29 @@ class ResolverBase extends disposable_1.default {
      * @returns {boolean}
      */
     get canReset() {
-        return this._allowReset && !!this._valueFactory;
+        return this._allowReset && !!this._resolveState.factory;
     }
     _onDispose() {
-        this._valueFactory = undefined;
-        this._value = undefined;
-        this._isValueCreated = null;
+        const state = this._resolveState;
+        state.factory = undefined;
+        state.value = undefined;
+        state.created = null;
+        Object.freeze(state);
     }
     /**
      * Will attempt to reset this resolve if possible and returns true if successfully reset.
      * @returns {boolean}
      */
     tryReset() {
-        if (!this._valueFactory)
+        if (!this._allowReset)
+            return false;
+        const state = this._resolveState;
+        if (!state.factory)
             return false;
         else {
-            this._isValueCreated = false;
-            this._value = undefined;
-            this._error = undefined;
+            state.created = false;
+            state.value = undefined;
+            state.error = undefined;
             return true;
         }
     }
