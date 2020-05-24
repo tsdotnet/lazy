@@ -16,6 +16,14 @@ export default class Lazy extends ResolverBase {
         return this.getValue();
     }
     /**
+     * Gets the value regardless if resolved or not.
+     * Does not trigger the value factory.
+     * @return {T | undefined}
+     */
+    get valueReference() {
+        return this._resolveState.value;
+    }
+    /**
      * Compares the values of two Lazy<T> for equality.
      * @param other
      * @returns {boolean}

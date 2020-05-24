@@ -10,6 +10,12 @@ export default class Lazy<T> extends ResolverBase<T> {
      */
     get value(): T;
     /**
+     * Gets the value regardless if resolved or not.
+     * Does not trigger the value factory.
+     * @return {T | undefined}
+     */
+    get valueReference(): T | undefined;
+    /**
      * Compares the values of two Lazy<T> for equality.
      * @param other
      * @returns {boolean}
