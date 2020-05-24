@@ -19,34 +19,34 @@ export default abstract class ResolverBase<T> extends DisposableBase {
         error?: unknown;
     };
     protected constructor(valueFactory: Func<T>, _allowReset?: boolean);
-    protected getError(): unknown;
-    /**
-     * The error value if previous faulted.
-     */
-    get error(): any;
     /**
      * True if the resolution faulted.
      * @returns {boolean}
      */
     get isFaulted(): boolean;
     /**
+     * The error value if previous faulted.
+     */
+    get error(): any;
+    /**
      * Returns true if the value has been created.
      */
     get isValueCreated(): boolean;
-    /**
-     * Uses the provided factory to generate the value and returns that value for subsequent requests.
-     */
-    getValue(): T;
     /**
      * Will return true if allowReset is true and a value factory still exists.
      * @returns {boolean}
      */
     get canReset(): boolean;
-    protected _onDispose(): void;
+    /**
+     * Uses the provided factory to generate the value and returns that value for subsequent requests.
+     */
+    getValue(): T;
     /**
      * Will attempt to reset this resolve if possible and returns true if successfully reset.
      * @returns {boolean}
      */
     tryReset(): boolean;
+    protected getError(): unknown;
+    protected _onDispose(): void;
 }
 export {};

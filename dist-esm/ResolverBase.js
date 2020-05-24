@@ -22,16 +22,6 @@ export default class ResolverBase extends DisposableBase {
             factory: valueFactory
         };
     }
-    // Allows for overriding this behavior.
-    getError() {
-        return this._resolveState.error;
-    }
-    /**
-     * The error value if previous faulted.
-     */
-    get error() {
-        return this.getError();
-    }
     /**
      * True if the resolution faulted.
      * @returns {boolean}
@@ -40,10 +30,23 @@ export default class ResolverBase extends DisposableBase {
         return !!this._resolveState.error;
     }
     /**
+     * The error value if previous faulted.
+     */
+    get error() {
+        return this.getError();
+    }
+    /**
      * Returns true if the value has been created.
      */
     get isValueCreated() {
         return !!this._resolveState.created;
+    }
+    /**
+     * Will return true if allowReset is true and a value factory still exists.
+     * @returns {boolean}
+     */
+    get canReset() {
+        return this._allowReset && !!this._resolveState.factory;
     }
     /**
      * Uses the provided factory to generate the value and returns that value for subsequent requests.
@@ -80,20 +83,6 @@ export default class ResolverBase extends DisposableBase {
         }
     }
     /**
-     * Will return true if allowReset is true and a value factory still exists.
-     * @returns {boolean}
-     */
-    get canReset() {
-        return this._allowReset && !!this._resolveState.factory;
-    }
-    _onDispose() {
-        const state = this._resolveState;
-        state.factory = undefined;
-        state.value = undefined;
-        state.created = null;
-        Object.freeze(state);
-    }
-    /**
      * Will attempt to reset this resolve if possible and returns true if successfully reset.
      * @returns {boolean}
      */
@@ -109,6 +98,17 @@ export default class ResolverBase extends DisposableBase {
             state.error = undefined;
             return true;
         }
+    }
+    // Allows for overriding this behavior.
+    getError() {
+        return this._resolveState.error;
+    }
+    _onDispose() {
+        const state = this._resolveState;
+        state.factory = undefined;
+        state.value = undefined;
+        state.created = null;
+        Object.freeze(state);
     }
 }
 //# sourceMappingURL=ResolverBase.js.map
