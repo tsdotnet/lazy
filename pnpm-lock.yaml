@@ -1,5 +1,5 @@
 dependencies:
-  '@tsdotnet/disposable': 1.1.21
+  '@tsdotnet/disposable': 1.1.22
   tslib: 2.2.0
 devDependencies:
   '@types/chai': 4.2.16
@@ -260,12 +260,12 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-1V9XOY4rDW0rehzbrcqAmHnz8e7SKvX27gh8Gt2WgB0+pdzdiLV83p72kZPU+jvMbS1qU5mauP2iOvO8rhmurQ==
-  /@tsdotnet/disposable/1.1.21:
+  /@tsdotnet/disposable/1.1.22:
     dependencies:
       tslib: 2.2.0
     dev: false
     resolution:
-      integrity: sha512-I6ID60n0pc7P61fVd6L+tb3IE8BeXkAxnn6VBXXFBQzApfs7xsLLJRvLW/6En+egvNZ18LiSqt7kt0bzg9pEng==
+      integrity: sha512-y1WhVJHJ9dusKf4FQcnhT8iSQJlzMkWcJFyJjXV2L1xjxnC03mDnGKNhFTSuJnPrnivxwhPUiY3jgdWS6l/E/Q==
   /@types/chai/4.2.16:
     dev: true
     resolution:
@@ -3194,7 +3194,7 @@ packages:
     resolution:
       integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
 specifiers:
-  '@tsdotnet/disposable': ^1.1.21
+  '@tsdotnet/disposable': ^1.1.22
   '@types/chai': ^4.2.16
   '@types/mocha': ^8.2.2
   '@typescript-eslint/eslint-plugin': ^4.22.0
