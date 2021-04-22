@@ -3,7 +3,6 @@
  * @license MIT
  */
 
-
 import DisposableBase from '@tsdotnet/disposable';
 
 type Func<T> = () => T;
