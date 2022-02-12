@@ -6,11 +6,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Lazy = exports.ResettableLazy = exports.ResolverBase = void 0;
 const tslib_1 = require("tslib");
-const Lazy_1 = tslib_1.__importDefault(require("./Lazy"));
+const Lazy_1 = (0, tslib_1.__importDefault)(require("./Lazy"));
 exports.Lazy = Lazy_1.default;
-const ResettableLazy_1 = tslib_1.__importDefault(require("./ResettableLazy"));
+const ResettableLazy_1 = (0, tslib_1.__importDefault)(require("./ResettableLazy"));
 exports.ResettableLazy = ResettableLazy_1.default;
-const ResolverBase_1 = tslib_1.__importDefault(require("./ResolverBase"));
+const ResolverBase_1 = (0, tslib_1.__importDefault)(require("./ResolverBase"));
 exports.ResolverBase = ResolverBase_1.default;
 exports.default = Lazy_1.default;
 //# sourceMappingURL=index.js.map

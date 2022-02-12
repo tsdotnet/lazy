@@ -5,7 +5,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const disposable_1 = tslib_1.__importDefault(require("@tsdotnet/disposable"));
+const disposable_1 = (0, tslib_1.__importDefault)(require("@tsdotnet/disposable"));
 const NAME = 'ResolverBase';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**

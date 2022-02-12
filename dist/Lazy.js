@@ -5,7 +5,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const ResolverBase_1 = tslib_1.__importDefault(require("./ResolverBase"));
+const ResolverBase_1 = (0, tslib_1.__importDefault)(require("./ResolverBase"));
 // We need a non-resettable lazy to ensure it can be passed safely around.
 class Lazy extends ResolverBase_1.default {
     constructor(valueFactory, allowReset = false) {
