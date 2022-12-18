@@ -3,7 +3,7 @@
  * @license MIT
  */
 import DisposableBase from '@tsdotnet/disposable';
-declare type Func<T> = () => T;
+type Func<T> = () => T;
 /**
  * The ResolverBase class handles resolving a factory method and detects recursion.
  * Since JS does not have a synchronization mechanism (lock or otherwise)
