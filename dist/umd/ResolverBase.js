@@ -16,7 +16,6 @@
     const tslib_1 = require("tslib");
     const disposable_1 = tslib_1.__importDefault(require("@tsdotnet/disposable"));
     const NAME = 'ResolverBase';
-    /* eslint-disable @typescript-eslint/no-explicit-any */
     /**
      * The ResolverBase class handles resolving a factory method and detects recursion.
      * Since JS does not have a synchronization mechanism (lock or otherwise)
@@ -73,7 +72,6 @@
                 throw state.error;
             if (state.created === null)
                 throw new Error('Recursion detected.');
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             else if (state.created)
                 return state.value;
             const c = state.factory;
