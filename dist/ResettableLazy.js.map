@@ -1,1 +1,0 @@
-{"version":3,"file":"ResettableLazy.js","sourceRoot":"","sources":["../src/ResettableLazy.ts"],"names":[],"mappings":";AAAA;;;GAGG;;;AAEH,0DAA0B;AAE1B,MAAqB,cACpB,SAAQ,cAAO;IAEf,YAAa,YAAqB;QAEjC,KAAK,CAAC,YAAY,EAAE,IAAI,CAAC,CAAC;QAC1B,IAAI,CAAC,qBAAqB,GAAG,gBAAgB,CAAC;IAC/C,CAAC;IAED,MAAM,CAAC,MAAM,CAAK,YAAqB;QAEtC,OAAO,IAAI,cAAc,CAAI,YAAY,CAAC,CAAC;IAC5C,CAAC;CACD;AAbD,iCAaC"}

@@ -12,6 +12,8 @@ const NAME = 'ResolverBase';
  * or returning return a value that is intermediate between resolving and resolved.
  */
 export default class ResolverBase extends DisposableBase {
+    _allowReset;
+    _resolveState;
     constructor(valueFactory, _allowReset = false) {
         super(NAME);
         this._allowReset = _allowReset;

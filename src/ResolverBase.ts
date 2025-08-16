@@ -9,7 +9,7 @@ type Func<T> = () => T;
 
 const NAME: string = 'ResolverBase';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 
 /**
  * The ResolverBase class handles resolving a factory method and detects recursion.
@@ -85,7 +85,7 @@ export default abstract class ResolverBase<T>
 		// Do not continue if already faulted.
 		if(state.error) throw state.error;
 		if(state.created===null) throw new Error('Recursion detected.');
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+		 
 		else if(state.created) return state.value!;
 
 		const c = state.factory;
