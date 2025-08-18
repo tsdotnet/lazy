@@ -1,9 +1,10 @@
+import Lazy from './Lazy.js';
+
 /*!
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  */
-import Lazy from './Lazy';
-export default class ResettableLazy extends Lazy {
+class ResettableLazy extends Lazy {
     constructor(valueFactory) {
         super(valueFactory, true);
         this._disposableObjectName = 'ResettableLazy';
@@ -12,4 +13,6 @@ export default class ResettableLazy extends Lazy {
         return new ResettableLazy(valueFactory);
     }
 }
+
+export { ResettableLazy as default };
 //# sourceMappingURL=ResettableLazy.js.map

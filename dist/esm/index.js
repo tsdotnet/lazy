@@ -1,10 +1,11 @@
+import Lazy from './Lazy.js';
+export { default as ResettableLazy } from './ResettableLazy.js';
+export { default as ResolverBase } from './ResolverBase.js';
+
 /*!
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  */
-import Lazy from './Lazy';
-import ResettableLazy from './ResettableLazy';
-import ResolverBase from './ResolverBase';
-export { ResolverBase, ResettableLazy, Lazy };
-export default Lazy;
+
+export { Lazy, Lazy as default };
 //# sourceMappingURL=index.js.map

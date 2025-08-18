@@ -3,7 +3,7 @@
  * @license MIT
  */
 
-import DisposableBase from '@tsdotnet/disposable';
+import { DisposableBase } from '@tsdotnet/disposable';
 
 type Func<T> = () => T;
 
@@ -94,16 +94,16 @@ export default abstract class ResolverBase<T>
 		state.created = null; // Mark this as 'resolving'.
 		try
 		{
-			if(!this._allowReset) state.factory = undefined;
+			if(!this._allowReset) delete state.factory;
 			const v = c();
 			state.value = v;
 			state.created = true;
-			state.error = undefined;
+			delete state.error;
 			return v;
 		}
 		catch(ex)
 		{
-			state.value = undefined;
+			delete state.value;
 			state.created = false;
 			state.error = ex;
 			throw ex;
@@ -122,8 +122,8 @@ export default abstract class ResolverBase<T>
 		else
 		{
 			state.created = false;
-			state.value = undefined;
-			state.error = undefined;
+			delete state.value;
+			delete state.error;
 			return true;
 		}
 	}
@@ -137,8 +137,8 @@ export default abstract class ResolverBase<T>
 	protected _onDispose (): void
 	{
 		const state = this._resolveState;
-		state.factory = undefined;
-		state.value = undefined;
+		delete state.factory;
+		delete state.value;
 		state.created = null;
 		Object.freeze(state);
 	}
