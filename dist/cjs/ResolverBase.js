@@ -5,10 +5,9 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const disposable_1 = require("@tsdotnet/disposable");
-const NAME = 'ResolverBase';
 class ResolverBase extends disposable_1.DisposableBase {
     constructor(valueFactory, _allowReset = false) {
-        super(NAME);
+        super();
         this._allowReset = _allowReset;
         if (!valueFactory)
             throw new Error('\'valueFactory\' cannot be null or undefined.');
@@ -30,7 +29,7 @@ class ResolverBase extends disposable_1.DisposableBase {
         return this._allowReset && !!this._resolveState.factory;
     }
     getValue() {
-        this.throwIfDisposed();
+        this.assertIsAlive();
         const state = this._resolveState;
         if (state.error)
             throw state.error;

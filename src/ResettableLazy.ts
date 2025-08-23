@@ -11,7 +11,6 @@ export default class ResettableLazy<T>
 	constructor (valueFactory: () => T)
 	{
 		super(valueFactory, true);
-		this._disposableObjectName = 'ResettableLazy';
 	}
 
 	static create<T> (valueFactory: () => T): ResettableLazy<T>

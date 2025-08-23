@@ -7,8 +7,6 @@ import { DisposableBase } from '@tsdotnet/disposable';
 
 type Func<T> = () => T;
 
-const NAME: string = 'ResolverBase';
-
  
 
 /**
@@ -32,7 +30,7 @@ export default abstract class ResolverBase<T>
 		private readonly _allowReset: boolean = false
 	)
 	{
-		super(NAME);
+		super();
 		if(!valueFactory) throw new Error('\'valueFactory\' cannot be null or undefined.');
 		this._resolveState = {
 			created: false,
@@ -80,7 +78,7 @@ export default abstract class ResolverBase<T>
 	getValue (): T
 	{
 
-		this.throwIfDisposed();
+		this.assertIsAlive();
 		const state = this._resolveState;
 		// Do not continue if already faulted.
 		if(state.error) throw state.error;

@@ -7,7 +7,6 @@ import Lazy from './Lazy.js';
 class ResettableLazy extends Lazy {
     constructor(valueFactory) {
         super(valueFactory, true);
-        this._disposableObjectName = 'ResettableLazy';
     }
     static create(valueFactory) {
         return new ResettableLazy(valueFactory);

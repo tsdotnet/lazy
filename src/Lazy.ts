@@ -14,7 +14,6 @@ export default class Lazy<T>
 		allowReset: boolean = false)
 	{
 		super(valueFactory, allowReset);
-		this._disposableObjectName = 'Lazy';
 	}
 
 	/**

@@ -4,12 +4,11 @@ import { DisposableBase } from '@tsdotnet/disposable';
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  */
-const NAME = 'ResolverBase';
 class ResolverBase extends DisposableBase {
     _allowReset;
     _resolveState;
     constructor(valueFactory, _allowReset = false) {
-        super(NAME);
+        super();
         this._allowReset = _allowReset;
         if (!valueFactory)
             throw new Error('\'valueFactory\' cannot be null or undefined.');
@@ -31,7 +30,7 @@ class ResolverBase extends DisposableBase {
         return this._allowReset && !!this._resolveState.factory;
     }
     getValue() {
-        this.throwIfDisposed();
+        this.assertIsAlive();
         const state = this._resolveState;
         if (state.error)
             throw state.error;

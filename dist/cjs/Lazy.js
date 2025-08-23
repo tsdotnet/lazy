@@ -9,7 +9,6 @@ const ResolverBase_1 = tslib_1.__importDefault(require("./ResolverBase"));
 class Lazy extends ResolverBase_1.default {
     constructor(valueFactory, allowReset = false) {
         super(valueFactory, allowReset);
-        this._disposableObjectName = 'Lazy';
     }
     get value() {
         return this.getValue();

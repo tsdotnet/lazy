@@ -7,7 +7,6 @@ import ResolverBase from './ResolverBase.js';
 class Lazy extends ResolverBase {
     constructor(valueFactory, allowReset = false) {
         super(valueFactory, allowReset);
-        this._disposableObjectName = 'Lazy';
     }
     get value() {
         return this.getValue();
