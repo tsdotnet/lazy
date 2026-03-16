@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import Lazy from '../src';
-import ResettableLazy from '../src/ResettableLazy';
-import ResolverBase from '../src/ResolverBase';
+import Lazy from '../src/index.js';
+import ResettableLazy from '../src/ResettableLazy.js';
+import ResolverBase from '../src/ResolverBase.js';
 
 // Test class to access protected methods
 class TestResolver<T> extends ResolverBase<T> {

@@ -2,7 +2,7 @@
  * @author electricessence / https://github.com/electricessence/
  * @license MIT
  */
-import ResolverBase from './ResolverBase';
+import ResolverBase from './ResolverBase.js';
 export default class Lazy<T> extends ResolverBase<T> {
     constructor(valueFactory: () => T, allowReset?: boolean);
     get value(): T;

@@ -3,7 +3,7 @@
  * @license MIT
  */
 
-import Lazy from './Lazy';
+import Lazy from './Lazy.js';
 
 export default class ResettableLazy<T>
 	extends Lazy<T>

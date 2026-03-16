@@ -3,7 +3,7 @@
  * @license MIT
  */
 
-import ResolverBase from './ResolverBase';
+import ResolverBase from './ResolverBase.js';
 
 // We need a non-resettable lazy to ensure it can be passed safely around.
 export default class Lazy<T>

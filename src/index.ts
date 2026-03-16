@@ -3,9 +3,9 @@
  * @license MIT
  */
 
-import Lazy from './Lazy';
-import ResettableLazy from './ResettableLazy';
-import ResolverBase from './ResolverBase';
+import Lazy from './Lazy.js';
+import ResettableLazy from './ResettableLazy.js';
+import ResolverBase from './ResolverBase.js';
 
 export {
 	ResolverBase,
