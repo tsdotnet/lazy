@@ -1,4 +1,4 @@
-![@tsdotnet/lazy: Create it when it’s needed. Then keep it: Lazy&lt;T&gt;, like .NET’s.](https://cdn.jsdelivr.net/gh/tsdotnet/lazy@master/assets/banner.svg)
+<a href="https://tsdotnet.github.io/lazy/"><img src="https://cdn.jsdelivr.net/gh/tsdotnet/lazy@master/assets/banner.svg" alt="@tsdotnet/lazy: Create it when it’s needed. Then keep it: Lazy&lt;T&gt;, like .NET’s."></a>
 
 [![npm version](https://img.shields.io/npm/v/@tsdotnet/lazy.svg?style=flat-square)](https://www.npmjs.com/package/@tsdotnet/lazy)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/tsdotnet/lazy/blob/master/LICENSE)
